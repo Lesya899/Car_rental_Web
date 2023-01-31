@@ -1,0 +1,17 @@
+<component name="ArtifactManager">
+  <artifact type="exploded-war" name="Car_rental_Web_ application:Web exploded">
+    <output-path>$PROJECT_DIR$/out/artifacts/Car_rental_Web__application_Web_exploded</output-path>
+    <root id="root">
+      <element id="javaee-facet-resources" facet="Car_rental_Web_ application/web/Web" />
+      <element id="directory" name="WEB-INF">
+        <element id="directory" name="classes">
+          <element id="module-output" name="Car_rental_Web_ application" />
+        </element>
+        <element id="directory" name="lib">
+          <element id="library" level="project" name="lib" />
+          <element id="library" level="project" name="lib (2)" />
+        </element>
+      </element>
+    </root>
+  </artifact>
+</component>
