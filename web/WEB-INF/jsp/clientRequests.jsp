@@ -1,4 +1,4 @@
-<%@ page contentType="text/html;charset=UTF-8" %>
+<%@ page contentType="text/html;charset=UTF-8" pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 
 
@@ -8,13 +8,13 @@
     <title></title>
 </head>
 <body>
-<h1>Requests:</h1>
+<%@ include file="header.jsp" %><br>
+<h1><fmt:message key="page.clientRequests.title"/>:</h1>
 <ul>
     <c:forEach var="requestRent" items="${requestsClient}">
-        <a href="${pageContext.request.contextPath}/descriptionRequest?rentCarId=${requestRent.id}">
+        <a href="${pageContext.request.contextPath}/descriptionRequest?rentId=${requestRent.id}">
                     ${requestRent.description}
-        </a>
-
+        </a><br><br>
     </c:forEach>
 </ul>
 </body>

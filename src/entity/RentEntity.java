@@ -1,7 +1,7 @@
 package entity;
 
 
-//для извлечения данных из таблицы rent
+
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -18,10 +18,11 @@ public class RentEntity {
 
         private Integer id;
         private LocalDate dateStart;
-        private Integer duration;
+        private LocalDate terminationCarRental;
         private Integer carId;
         private RequestStatus requestStatus;
         private Integer userId;
         private String passport;
         private Integer drivingExperience;
+        private String message;
 }

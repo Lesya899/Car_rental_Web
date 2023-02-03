@@ -16,10 +16,12 @@ public class LocaleServlet extends HttpServlet {
     protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         var language = req.getParameter("lang");
         req.getSession().setAttribute("lang", language);
-
         var prevPage = req.getHeader("referer");
         var page = prevPage != null ? prevPage : LOGIN;
-        // will be better to use header Accept-Language instead of param lang
-        resp.sendRedirect(page + "?lang=" + language);
+        if(page.contains("?")){
+            resp.sendRedirect(page + "&lang=" + language);
+        }else{
+            resp.sendRedirect(page + "?lang=" + language);
+        }
     }
 }

@@ -1,6 +1,6 @@
 package dto;
 
-//для отображения из БД данных о пользователе
+//Dto class to retrieve information from the users table
 
 
 import entity.Role;
@@ -8,11 +8,10 @@ import lombok.Builder;
 import lombok.Value;
 
 
-
 @Value
 @Builder
 public class UserDto {
-    int id;
+    Integer id;
     String firstName;
     String lastName;
     String phoneNumber;

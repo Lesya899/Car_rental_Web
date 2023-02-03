@@ -2,7 +2,6 @@ package util;
 
 import lombok.SneakyThrows;
 import lombok.experimental.UtilityClass;
-
 import java.util.Properties;
 
 @UtilityClass

@@ -4,20 +4,17 @@ package dao;
 import java.util.List;
 import java.util.Optional;
 
-//Dao - интерфейс с описанием общих методов, которые будут использоваться при взаимодействии с базой данных
 
+public interface Dao<K, E> {
 
+    boolean delete(K id);
 
-public interface Dao<K, E> {  //K - ключом является Integer (id), E - entity(сущность)
+    E save(E entity);
 
-    boolean delete(K id);  //удаление по указанному id
+    void update(E entity);
 
-    E save(E entity); //добавление новой записи в БД
+    Optional<E> findById(K id);
 
-    void update(E entity);  //изменение записи в БД
-
-    Optional<E> findById(K id);  //выбираем записи по id
-
-    List<E> findAll();  //выбираем все записи из БД
+    List<E> findAll();
 
 }

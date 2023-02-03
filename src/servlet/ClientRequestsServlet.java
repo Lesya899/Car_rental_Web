@@ -1,6 +1,6 @@
 package servlet;
 
-//отображает для клиента страницу с его заявками на аренду
+
 
 import dto.UserDto;
 import jakarta.servlet.ServletException;

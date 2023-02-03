@@ -1,6 +1,6 @@
 package servlet;
 
-//обрабатывает форму заявки на аренду автомобиля
+
 
 import dto.CarRentalDto;
 import dto.CarsDto;
@@ -32,7 +32,8 @@ public class MakeRequestRentCarServlet extends HttpServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        req.setAttribute("cars", carService.findAllCar());
+        Integer id = Integer.parseInt(req.getParameter("carId"));
+        req.setAttribute("car", carService.findById(id));
         req.getRequestDispatcher(JspHelper.getPath("makeRequestToRentCar"))
                 .forward(req, resp);
     }
@@ -43,12 +44,13 @@ public class MakeRequestRentCarServlet extends HttpServlet {
         UserDto user = (UserDto) req.getSession().getAttribute("user");
         var carRentalDto = CarRentalDto.builder()
                 .dateStart(Date.valueOf(req.getParameter("dataStart")).toLocalDate())
-                .duration(Integer.parseInt(req.getParameter("rentalDuration")))
+                .terminationCarRental(Date.valueOf(req.getParameter("terminationCarRental")).toLocalDate())
                 .carId(carService.findCarId(cars, req.getParameter("model")))
                 .requestStatus(RequestStatus.PROCESSING)
                 .userId(user.getId())
                 .passport(req.getParameter("passport"))
                 .drivingExperience(Integer.parseInt(req.getParameter("drivingExperience")))
+                .message("Car rental request is in processing.")
                 .build();
 
         try {

@@ -1,6 +1,6 @@
 package dao;
 
-//класс DAO для добавления данных из заявки на аренду в БД
+//Dao class for saving information from the car rental request to the rent table in the database
 
 import entity.CarRentalEntity;
 import lombok.NoArgsConstructor;
@@ -19,8 +19,8 @@ public class CarRentalRequestDao implements Dao<Integer, CarRentalEntity>{
     private static final CarRentalRequestDao INSTANCE = new CarRentalRequestDao();
 
     private static final String SAVE = """
-            INSERT INTO rent (date_start, duration, car_id, request_status, user_id, passport,driving_experience)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO rent (date_start, termination_car_rental, car_id, request_status, user_id, passport,driving_experience,mess)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
 
@@ -30,12 +30,13 @@ public class CarRentalRequestDao implements Dao<Integer, CarRentalEntity>{
         try (Connection connection = ConnectionManager.get();
             PreparedStatement preparedStatement = connection.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setDate(1, Date.valueOf(entity.getDateStart())); // чтобы преобразовать LocalDate в java.sql.Date , мы можем просто использовать метод valueOf()
-            preparedStatement.setInt(2, entity.getDuration());
+            preparedStatement.setDate(2, Date.valueOf(entity.getTerminationCarRental()));
             preparedStatement.setInt(3, entity.getCarId());
             preparedStatement.setString(4, entity.getRequestStatus().name());
             preparedStatement.setInt(5, entity.getUserId());
             preparedStatement.setString(6, entity.getPassport());
             preparedStatement.setInt(7, entity.getDrivingExperience());
+            preparedStatement.setString(8, entity.getMessage());
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {

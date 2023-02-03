@@ -27,7 +27,7 @@ public class DescriptionRequestService {
                 .map(requestsEntity -> RentDto.builder()
                         .id(requestsEntity.getId())
                         .dateStart(requestsEntity.getDateStart())
-                        .duration(requestsEntity.getDuration())
+                        .terminationCarRental(requestsEntity.getTerminationCarRental())
                         .carId(requestsEntity.getCarId())
                         .description(
                                 """
@@ -38,6 +38,7 @@ public class DescriptionRequestService {
                         .userId(requestsEntity.getUserId())
                         .passport(requestsEntity.getPassport())
                         .drivingExperience(requestsEntity.getDrivingExperience())
+                        .message(requestsEntity.getMessage())
                         .build());
     }
 

@@ -92,21 +92,6 @@ public class CarDao implements Dao<Integer, CarEntity> {
             "SELECT id FROM car WHERE model_id = (SELECT id FROM model WHERE model_name = ?)";
 
 
-    //находим id автомобиля по названию модели из таблицы model
-    @SneakyThrows
-    public Integer findCarId(String modelName) {
-        try (var connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(GET_BY_CAR_ID_SQL)) {
-            preparedStatement.setString(1, modelName);
-            var resultSet = preparedStatement.executeQuery();
-            int carId = 0;
-            if (resultSet.next()) {
-                carId = resultSet.getInt("id");
-            }
-            return carId;
-        }
-    }
-
 
     @Override
     @SneakyThrows
@@ -158,10 +143,6 @@ public class CarDao implements Dao<Integer, CarEntity> {
         }
     }
 
-
-
-
-    //поскольку метод может вернуть null т.е. пустую коллекцию, то используем Optional
     @Override
     @SneakyThrows
     public Optional<CarEntity> findById(Integer id) {
@@ -191,7 +172,6 @@ public class CarDao implements Dao<Integer, CarEntity> {
         }
     }
 
-
     @Override
     @SneakyThrows
     public List<CarEntity> findAll() {
@@ -206,7 +186,6 @@ public class CarDao implements Dao<Integer, CarEntity> {
         }
     }
 
-    //из ResultSet создаем объект CarEntity
     private CarEntity buildCar(ResultSet resultSet) throws SQLException {
         Model model = new Model(
                 resultSet.getInt("id"),

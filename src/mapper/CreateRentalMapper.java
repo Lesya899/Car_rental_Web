@@ -1,10 +1,8 @@
 package mapper;
 
-//класс для добавления данных из заполненной пользователем формы на аренду автомобиля в БД
 
 
 import dto.CarRentalDto;
-import dto.RentDto;
 import entity.*;
 import lombok.NoArgsConstructor;
 
@@ -22,12 +20,13 @@ public class CreateRentalMapper implements Mapper<CarRentalDto, CarRentalEntity>
     public CarRentalEntity mapFrom(CarRentalDto object) {
         return CarRentalEntity.builder()
                 .dateStart(Date.valueOf(object.getDateStart()).toLocalDate())
-                .duration(object.getDuration())
+                .terminationCarRental(Date.valueOf(object.getTerminationCarRental()).toLocalDate())
                 .carId(object.getCarId())
                 .requestStatus(object.getRequestStatus())
                 .userId(object.getUserId())
                 .passport(object.getPassport())
                 .drivingExperience(object.getDrivingExperience())
+                .message(object.getMessage())
                 .build();
     }
 

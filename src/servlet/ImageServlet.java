@@ -7,11 +7,8 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import service.ImageService;
-
 import java.io.IOException;
 import java.io.InputStream;
-
-
 import static util.UrlPath.IMAGES;
 
 @WebServlet(IMAGES + "/*")

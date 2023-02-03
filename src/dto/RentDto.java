@@ -1,6 +1,6 @@
 package dto;
 
-// для извлечения необходимых данных из БД
+// Dto class to retrieve information from the database on car rental requests
 
 
 import entity.RequestStatus;
@@ -15,11 +15,12 @@ import java.time.LocalDate;
 public class RentDto {
     Integer id;
     LocalDate dateStart;
-    Integer duration;
+    LocalDate terminationCarRental;
     Integer carId;
     String description;
     RequestStatus requestStatus;
     Integer userId;
     String passport;
     Integer drivingExperience;
+    String message;
 }

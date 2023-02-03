@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class RentalStatus {
-    private int id;
+    private Integer id;
     private String rentalStatus;
 
 }

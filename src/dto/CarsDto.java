@@ -1,6 +1,6 @@
 package dto;
 
-//класс для отображения автомобилей на странице cars.jsp
+//Dto class to get information about cars from the car table
 
 import lombok.Builder;
 import lombok.Value;
@@ -8,9 +8,12 @@ import lombok.Value;
 @Value
 @Builder
 public class CarsDto {
-
-    int id;
+    Integer id;
     String brandName;
     String modelName;
+    String color;
+    String status;
+    Integer rentalPrice;
     String image;
+    Integer carYear;
 }

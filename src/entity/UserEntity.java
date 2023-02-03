@@ -19,7 +19,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class UserEntity {
-    private int id;
+    private Integer id;
     private String firstName;
     private String lastName;
     private String phoneNumber;

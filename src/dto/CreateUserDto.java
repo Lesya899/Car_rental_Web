@@ -1,6 +1,6 @@
 package dto;
 
-//для добавления данных из формы регистрации (registration.jsp) в БД
+//Class Dto to add data from the registration form to the table users
 
 import lombok.Builder;
 import lombok.Value;

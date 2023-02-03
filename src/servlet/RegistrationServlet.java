@@ -10,9 +10,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.UserService;
 import util.JspHelper;
-
 import java.io.IOException;
-
 import static util.UrlPath.LOGIN;
 import static util.UrlPath.REGISTRATION;
 

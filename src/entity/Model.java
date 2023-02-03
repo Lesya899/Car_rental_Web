@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @Builder
 public class Model {
-    private int id;
+    private Integer id;
     private String modelName;
-    private int capacity;
+    private Integer capacity;
 
 }

@@ -1,7 +1,6 @@
 package util;
 
 import lombok.experimental.UtilityClass;
-
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
@@ -13,7 +12,7 @@ public class LocalDateFormatter {
     private static final String PATTERN = "yyyy-MM-dd";
     private static final DateTimeFormatter FORMATTER = DateTimeFormatter.ofPattern(PATTERN);
 
-    //метод для преобразования строки в дату
+
     public LocalDate format(String date) {
         return LocalDate.parse(date, FORMATTER);
     }

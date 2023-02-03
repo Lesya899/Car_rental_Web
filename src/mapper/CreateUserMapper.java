@@ -1,7 +1,6 @@
 package mapper;
 
-//для добавления данных из формы регистрации в таблицу users
-//преобразование CreateUserDto в сущность т.е.в UserEntity
+
 
 import dto.CreateUserDto;
 import entity.Role;

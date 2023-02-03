@@ -12,14 +12,14 @@ import lombok.NoArgsConstructor;
 @Builder
 public class CarEntity {
 
-    private int id;
+    private Integer id;
     private String brandName;
     private Model model;
     private String color;
     private RentalStatus status;
-    private int rentalPrice;
+    private Integer rentalPrice;
     private String image;
-    private int carYear;
+    private Integer carYear;
 
 
 }

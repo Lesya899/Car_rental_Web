@@ -1,6 +1,6 @@
 package dao;
 
-//класс для извлечения данных из таблицы rent БД
+
 
 import entity.*;
 import lombok.NoArgsConstructor;
@@ -11,16 +11,13 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)
 public class RentDao implements Dao<Integer, RentEntity>{
 
-
     private static final RentDao INSTANCE_RENT_DAO = new RentDao();
     
-
 
     private static final String DELETE = """
             DELETE FROM rent
@@ -29,19 +26,20 @@ public class RentDao implements Dao<Integer, RentEntity>{
 
 
     private static final String SAVE = """
-            INSERT INTO rent (date_start, duration, car_id, request_status, user_id, passport, driving_experience)
-            VALUES (?, ?, ?, ?, ?, ?, ?)
+            INSERT INTO rent (date_start, termination_car_rental, car_id, request_status, user_id, passport, driving_experience,mess)
+            VALUES (?, ?, ?, ?, ?, ?, ?, ?)
             """;
 
     private static final String UPDATE = """
             UPDATE rent
             SET date_start = ?,
-                duration = ?,
+                termination_car_rental = ?,
                 car_id = ?,
                 request_status = ?,
                 user_id = ?,
                 passport = ?,
-                driving_experience = ?
+                driving_experience = ?,
+                mess = ?
             WHERE id = ?  
             """;
 
@@ -49,12 +47,13 @@ public class RentDao implements Dao<Integer, RentEntity>{
     private static final String FIND_ALL = """
             SELECT id,
                 date_start,
-                duration,
+                termination_car_rental,
                 car_id,
                 request_status,
                 user_id,
                 passport,
-                driving_experience                           
+                driving_experience,
+                mess                           
             FROM rent
             """;
 
@@ -80,12 +79,13 @@ public class RentDao implements Dao<Integer, RentEntity>{
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS)) {
             preparedStatement.setDate(1, Date.valueOf(rentEntity.getDateStart())); // чтобы преобразовать LocalDate в java.sql.Date , мы можем просто использовать метод valueOf()
-            preparedStatement.setInt(2, rentEntity.getDuration());
+            preparedStatement.setDate(2, Date.valueOf(rentEntity.getTerminationCarRental()));
             preparedStatement.setInt(3, rentEntity.getCarId());
             preparedStatement.setString(4, rentEntity.getRequestStatus().name());
             preparedStatement.setInt(5, rentEntity.getUserId());
             preparedStatement.setString(6, rentEntity.getPassport());
             preparedStatement.setInt(7, rentEntity.getDrivingExperience());
+            preparedStatement.setString(8,rentEntity.getMessage());
             preparedStatement.executeUpdate();
             ResultSet generatedKeys = preparedStatement.getGeneratedKeys();
             if (generatedKeys.next()) {
@@ -100,13 +100,14 @@ public class RentDao implements Dao<Integer, RentEntity>{
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(UPDATE)) {
             preparedStatement.setDate(1, Date.valueOf(rentEntity.getDateStart()));
-            preparedStatement.setInt(2, rentEntity.getDuration());
+            preparedStatement.setDate(2, Date.valueOf(rentEntity.getTerminationCarRental()));
             preparedStatement.setInt(3, rentEntity.getCarId());
             preparedStatement.setString(4, rentEntity.getRequestStatus().name());
             preparedStatement.setInt(5, rentEntity.getUserId());
             preparedStatement.setString(6, rentEntity.getPassport());
             preparedStatement.setInt(7, rentEntity.getDrivingExperience());
-            preparedStatement.setInt(8, rentEntity.getId());
+            preparedStatement.setString(8,rentEntity.getMessage());
+            preparedStatement.setInt(9, rentEntity.getId());
             preparedStatement.executeUpdate();
         }
     }
@@ -152,12 +153,13 @@ public class RentDao implements Dao<Integer, RentEntity>{
         return RentEntity.builder()
                 .id(resultSet.getObject("id", Integer.class))
                 .dateStart(resultSet.getObject("date_start", LocalDate.class))
-                .duration(resultSet.getObject("duration", Integer.class))
+                .terminationCarRental(resultSet.getObject("termination_car_rental", LocalDate.class))
                 .carId(resultSet.getObject("car_id", Integer.class))
                 .requestStatus(RequestStatus.valueOf(resultSet.getObject("request_status", String.class)))
                 .userId(resultSet.getObject("user_id", Integer.class))
                 .passport(resultSet.getObject("passport", String.class))
                 .drivingExperience(resultSet.getObject("driving_experience", Integer.class))
+                .message(resultSet.getObject("mess", String.class))
                 .build();
 
     }

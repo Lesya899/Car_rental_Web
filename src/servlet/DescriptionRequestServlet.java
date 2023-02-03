@@ -9,9 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import lombok.SneakyThrows;
 import service.DescriptionRequestService;
 import util.JspHelper;
-
 import java.io.IOException;
-
 import static util.UrlPath.DESCRIPTION_REQUESTS;
 
 
@@ -24,8 +22,8 @@ public class DescriptionRequestServlet extends HttpServlet {
     @Override
     @SneakyThrows
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        Integer rentCarId = Integer.parseInt(req.getParameter("rentCarId"));
-        descriptionRequestService.findRequestById(rentCarId).ifPresentOrElse(rentDto -> {
+        Integer id = Integer.parseInt(req.getParameter("rentId"));
+        descriptionRequestService.findRequestById(id).ifPresentOrElse(rentDto -> {
             forwardRequest(req, resp, rentDto);
         }, () -> {
             send(resp);

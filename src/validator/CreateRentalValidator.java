@@ -1,7 +1,6 @@
 package validator;
 
 import dto.CarRentalDto;
-import dto.RentDto;
 import util.LocalDateFormatter;
 
 
@@ -16,8 +15,8 @@ public class CreateRentalValidator implements Validator<CarRentalDto> {
         if (!LocalDateFormatter.isValid(object.getDateStart().toString())) {
             validResult.add(Error.of("invalid.dateStart", "Date start is invalid"));
         }
-        if (String.valueOf(object.getDuration()).isEmpty()) {
-            validResult.add(Error.of("invalid.duration", "Duration is invalid"));
+        if (!LocalDateFormatter.isValid(object.getTerminationCarRental().toString())) {
+            validResult.add(Error.of("invalid.getTerminationCarRental", "Termination car rental is invalid"));
         }
         return validResult;
     }

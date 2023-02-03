@@ -1,6 +1,6 @@
 package validator;
 
-//принимает сущность и возвращает
+
 
 public interface Validator<T> {
 

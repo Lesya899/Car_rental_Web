@@ -1,6 +1,5 @@
 package servlet;
 
-//при обращении по адресу localhost:8080/login, открывается страница для ввода пользователем логина и пароля
 
 
 import dto.UserDto;
@@ -24,12 +23,7 @@ public class LoginServlet extends HttpServlet {
 
     private final UserService userService = UserService.getInstance();
 
-    /**
-     *
-     * RequestDispatcher получает запросы от клиента и отправляет их ресурсу (например, сервлету, файлу HTML, файлу JSP, шаблону FreeMarker или Thymeleaf) на сервере.
-     * С помощью  метода getRequestDispatcher() получаем объект RequestDispatcher. Путь к ресурсу, на который надо выполнить перенаправление, передается в качестве параметра в getRequestDispatcher.
-     * Затем у объекта RequestDispatcher вызывается метод forward(), в который передаются объекты HttpServletRequest и HttpServletResponse.
-     */
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("roles", Role.values());

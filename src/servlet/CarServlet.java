@@ -1,6 +1,6 @@
 package servlet;
 
-//После того как клиент успешно залогинился в системе, он переходит на страницу со списком автомобилей для аренды
+
 
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -9,9 +9,7 @@ import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import service.CarService;
 import util.JspHelper;
-
 import java.io.IOException;
-
 import static util.UrlPath.CARS;
 
 @WebServlet(CARS)

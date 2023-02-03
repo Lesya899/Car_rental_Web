@@ -1,6 +1,6 @@
 package dto;
 
-//класс Dto для добавления данных из заявления на аренду в БД
+//Dto class for saving information from the car rental request to the rent table in the database
 
 import entity.RequestStatus;
 import lombok.Builder;
@@ -14,11 +14,12 @@ import java.time.LocalDate;
     public class CarRentalDto {
         Integer id;
         LocalDate dateStart;
-        Integer duration;
+        LocalDate terminationCarRental;
         Integer carId;
         RequestStatus requestStatus;
         Integer userId;
         String passport;
         Integer drivingExperience;
+        String message;
     }
 

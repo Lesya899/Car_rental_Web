@@ -7,7 +7,7 @@
 </head>
 <body>
 <%@ include file="header.jsp"%><br><br>
-<a style="font-size:20px" href="${pageContext.request.contextPath}/cars">Rent a cars</a><br><br><br>
-<a style="font-size:20px" href="${pageContext.request.contextPath}/clientRequests">Requests for car rental</a><br><br><br>
+<a style="font-size:20px" href="${pageContext.request.contextPath}/cars"><fmt:message key="page.user.rentACars"/></a><br><br><br>
+<a style="font-size:20px" href="${pageContext.request.contextPath}/clientRequests"><fmt:message key="page.user.requestsCarRental"/></a><br><br><br>
 </body>
 </html>

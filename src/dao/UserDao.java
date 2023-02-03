@@ -8,7 +8,6 @@ import util.ConnectionManager;
 import java.sql.ResultSet;
 import java.util.List;
 import java.util.Optional;
-
 import static java.sql.Statement.RETURN_GENERATED_KEYS;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -23,40 +22,6 @@ public class UserDao implements Dao<Integer, UserEntity> {
     private static final String GET_BY_EMAIL_AND_PASSWORD_SQL =
             "SELECT * FROM users WHERE email = ? AND password = ? AND role = ?";
 
-    private static final String FIND_ALL_USERS = """
-            SELECT id,
-            first_name,
-            last_name,
-            phone_number,
-            email,
-            password,
-            role
-            FROM users
-            """;
-
-
-
-    private static final String GET_BY_USERS_ID_SQL =
-            "SELECT id FROM users WHERE email = ?";
-
-
-
-
-
-    //находим id клиента по email из таблицы users
-    @SneakyThrows
-    public Integer findUserId(String email) {
-        try (var connection = ConnectionManager.get();
-             var preparedStatement = connection.prepareStatement(GET_BY_USERS_ID_SQL)) {
-            preparedStatement.setString(1, email);
-            var resultSet = preparedStatement.executeQuery();
-            int clientId = 0;
-            if (resultSet.next()) {
-                clientId = resultSet.getInt("id");
-            }
-            return clientId;
-        }
-    }
 
 
     @Override

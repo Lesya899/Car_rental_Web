@@ -1,6 +1,6 @@
 package mapper;
 
-//для проверки введенного логина и пароля с данными из таблицы users
+
 
 import dto.UserDto;
 import entity.UserEntity;

@@ -14,7 +14,6 @@ import static util.UrlPath.ADMIN;
 public class AdminServlet extends HttpServlet {
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        //req.setAttribute("carEntity", createRentalDto);
         req.getRequestDispatcher(JspHelper.getPath("admin"))
                 .forward(req, resp);
     }

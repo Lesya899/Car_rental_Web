@@ -4,30 +4,31 @@
 
 <html>
 <head>
-    <title>Title</title>
+    <title></title>
 </head>
 <body>
+<%@ include file="header.jsp" %><br>
 <form action="${pageContext.request.contextPath}/registration" method="post">
-    <label for="firstNameId">First name:
+    <label for="firstNameId"><fmt:message key="page.makeRequest.firstName"/>:
         <input type="text" name="firstName" id="firstNameId">
     </label><br>
-    <label for="lastNameId">Last name:
+    <label for="lastNameId"><fmt:message key="page.makeRequest.lastName"/>:
         <input type="text" name="lastName" id="lastNameId" required>
     </label><br>
-    <label for="emailId">Email:
+    <label for="emailId"><fmt:message key="page.login.email"/>:
         <input type="text" name="email" id="emailId">
     </label><br>
-    <label for="passwordId">Password:
+    <label for="passwordId"><fmt:message key="page.login.password"/>:
         <input type="password" name="password" id="passwordId">
     </label><br>
-    <label for="role">Role:
+    <label for="role"><fmt:message key="page.login.role"/>:
         <select name="role" id="role">
             <c:forEach var="role" items="${requestScope.roles}">
                 <option value="${role}">${role}</option>
             </c:forEach>
         </select>
     </label><br>
-    <button type="submit">Send</button>
+    <button type="submit"><fmt:message key="page.login.submit.button"/></button>
     <c:if test="${not empty requestScope.errors}">
         <div style="color: red">
             <c:forEach var="error" items="${requestScope.errors}">
