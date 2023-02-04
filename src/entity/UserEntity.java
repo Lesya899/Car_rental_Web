@@ -1,12 +1,5 @@
 package entity;
 
-/**
- * Класс предназначен:
- * -для добавления данных из формы регистрации в таблицу users;
- * -для сверки введенных логина и пароля с данными в таблицы users
- */
-
-
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
