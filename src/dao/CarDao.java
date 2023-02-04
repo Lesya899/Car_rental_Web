@@ -88,16 +88,13 @@ public class CarDao implements Dao<Integer, CarEntity> {
             """;
 
 
-    private static final String GET_BY_CAR_ID_SQL =
-            "SELECT id FROM car WHERE model_id = (SELECT id FROM model WHERE model_name = ?)";
-
 
 
     @Override
     @SneakyThrows
     public boolean delete(Integer id) {
         try (Connection connection = ConnectionManager.get();
-             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL)) { // создает объект PreparedStatement для отправки параметризованных операторов SQL в базу данных.
+             PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL)) {
             preparedStatement.setInt(1, id);
             return preparedStatement.executeUpdate() > 0;
         }
@@ -149,9 +146,9 @@ public class CarDao implements Dao<Integer, CarEntity> {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(FIND_BY_ID_SQL)) {
              preparedStatement.setInt(1, id);
-             ResultSet resultSet = preparedStatement.executeQuery(); //executeQuery() выполняет запрос SQL в этом объекте PreparedStatement и возвращает объект ResultSet, сгенерированный запросом
+             ResultSet resultSet = preparedStatement.executeQuery();
              CarEntity carEntity = null;
-             if (resultSet.next()) { //поскольку может вернуться null, то используем if, а не while
+             if (resultSet.next()) {
                  carEntity = buildCar(resultSet);
              }
              return Optional.ofNullable(carEntity);
