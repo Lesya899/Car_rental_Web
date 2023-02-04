@@ -78,7 +78,7 @@ public class RentDao implements Dao<Integer, RentEntity>{
     public RentEntity save(RentEntity rentEntity) {
         try (Connection connection = ConnectionManager.get();
              PreparedStatement preparedStatement = connection.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setDate(1, Date.valueOf(rentEntity.getDateStart())); // чтобы преобразовать LocalDate в java.sql.Date , мы можем просто использовать метод valueOf()
+            preparedStatement.setDate(1, Date.valueOf(rentEntity.getDateStart()));
             preparedStatement.setDate(2, Date.valueOf(rentEntity.getTerminationCarRental()));
             preparedStatement.setInt(3, rentEntity.getCarId());
             preparedStatement.setString(4, rentEntity.getRequestStatus().name());
