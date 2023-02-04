@@ -29,7 +29,7 @@ public class CarRentalRequestDao implements Dao<Integer, CarRentalEntity>{
     public CarRentalEntity save(CarRentalEntity entity) {
         try (Connection connection = ConnectionManager.get();
             PreparedStatement preparedStatement = connection.prepareStatement(SAVE, Statement.RETURN_GENERATED_KEYS)) {
-            preparedStatement.setDate(1, Date.valueOf(entity.getDateStart())); // чтобы преобразовать LocalDate в java.sql.Date , мы можем просто использовать метод valueOf()
+            preparedStatement.setDate(1, Date.valueOf(entity.getDateStart()));
             preparedStatement.setDate(2, Date.valueOf(entity.getTerminationCarRental()));
             preparedStatement.setInt(3, entity.getCarId());
             preparedStatement.setString(4, entity.getRequestStatus().name());
