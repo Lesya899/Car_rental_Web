@@ -1,6 +1,6 @@
 package service;
 
-//отображает данные из таблицы rent
+
 
 import dao.CarDao;
 import dao.RentDao;
@@ -9,11 +9,9 @@ import entity.RentEntity;
 import entity.RentalStatus;
 import entity.RequestStatus;
 import lombok.NoArgsConstructor;
-
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
-
 import static java.util.stream.Collectors.toList;
 import static lombok.AccessLevel.PRIVATE;
 
@@ -29,8 +27,8 @@ public class RentService {
 
 
     public List<RentDto> findAllRequests() {
-        return rentDao.findAll().stream()//класс RentDao извлекает данные из БД и возвращает List<RentEntity>
-                .map(rentEntity -> RentDto.builder() //затем List<RentEntity> преобразуем в List<RentDto>
+        return rentDao.findAll().stream()
+                .map(rentEntity -> RentDto.builder()
                         .id(rentEntity.getId())
                         .dateStart(rentEntity.getDateStart())
                         .terminationCarRental(rentEntity.getTerminationCarRental())
@@ -50,7 +48,6 @@ public class RentService {
     }
 
 
-    //находим запрос по id пользователя
     public List<RentDto> findRequestsByUser(Integer userId) {
         List<RentDto> rentlDto = findAllRequests();
         return rentlDto.stream()

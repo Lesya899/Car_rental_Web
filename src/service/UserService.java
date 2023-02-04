@@ -3,16 +3,13 @@ package service;
 import dao.UserDao;
 import dto.CreateUserDto;
 import dto.UserDto;
-import entity.Role;
 import exception.ValidationException;
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import mapper.CreateUserMapper;
 import mapper.UserMapper;
 import validator.CreateUserValidator;
-
 import java.util.Optional;
-
 import static lombok.AccessLevel.PRIVATE;
 
 @NoArgsConstructor(access = PRIVATE)

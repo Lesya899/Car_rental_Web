@@ -1,11 +1,9 @@
 package service;
 
-//класс для добавления данных из заполненной пользователем формы на аренду автомобиля в БД
 
 
 import dao.CarRentalRequestDao;
 import dto.CarRentalDto;
-import dto.RentDto;
 import entity.CarRentalEntity;
 import exception.ValidationException;
 import lombok.NoArgsConstructor;
@@ -34,7 +32,7 @@ public class CarRentalRequestService {
         if (!validationResult.isValid()) {
             throw new ValidationException(validationResult.getErrors());
         }
-        var createRentRequest = createRentalMapper.mapFrom(carRentalDto);//преобразуем Dto в entity
+        var createRentRequest = createRentalMapper.mapFrom(carRentalDto);
         carRentalRequestDao.save(createRentRequest);
         return createRentRequest;
     }

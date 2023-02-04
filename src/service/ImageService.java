@@ -1,18 +1,14 @@
 package service;
 
-/**сервис, который будет сохранять в папку C:\work все наши картинки, а в БД будут храниться только ссылки на них
- *для этого необходимо добавить в файл application.properties путь к картинкам - image.base.url=/work
- */
+
 
 import lombok.NoArgsConstructor;
 import lombok.SneakyThrows;
 import util.PropertiesUtil;
-
 import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.Optional;
-
 import static java.nio.file.StandardOpenOption.CREATE;
 import static java.nio.file.StandardOpenOption.TRUNCATE_EXISTING;
 import static lombok.AccessLevel.PRIVATE;
